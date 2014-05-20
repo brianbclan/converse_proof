@@ -100,7 +100,7 @@ where $T$ is the auxiliary random variables independent of $S$ and satisfying th
 \end{theorem}
 
 \section{Achievability Proof}
-We first prove that the following rate is achievable in general, namely, 
+We first prove that the following rate is achievable in general, namely,
 \begin{equation}\label{eq.achievable}
 R_s = \max_{p(u)p(t|u),x(t,s)} I(U;Y)-I(U;Z)
 \end{equation}
@@ -138,16 +138,16 @@ By LLN, $P(\calE_1)\rightarrow 0$ as $n\rightarrow \infty$. By the packing lemma
 
 By following the proof in the Network Information Theory book, the equivocation at the eavesdropper can also be shown to approach $0$ as $n\rightarrow \infty$ if $\tilde{R}-R\geq I(U,Z)$. Hence, the achievable rate follows as \eqref{eq.achievable}.
 
-Now, by the less noisy property, we have 
+Now, by the less noisy property, we have
 \begin{align}
-R_s &= \max_{p(u)p(t|u),f(t,s)} I(U;Y)-I(U;Z)\notag\\
-&= \max_{p(u)p(t|u),f(t,s)} I(T;Y)-I(T;Z)-(I(T;Y|U)-I(T;Z|U))\notag\\
+R_s &= \max_{p(u)p(t|u),x(t,s)} I(U;Y)-I(U;Z)\notag\\
+&= \max_{p(u)p(t|u),x(t,s)} I(T;Y)-I(T;Z)-(I(T;Y|U)-I(T;Z|U))\notag\\
 &= \max_{p(t),x(t,s)} I(T;Y)-I(T;Z)
 \end{align}
 where the last equality follows since $I(T;Y|U)-I(T;Z|U)\geq 0$ and by letting $U=T$, it is made $0$. Hence, the achievability follows.
 
 \section{Converse Proof}
-To prove the converse, we first assume that the wiretap channel is less noisy, \ie $I(U;Y)\geq I(U;Z)$ for all $P_UP_{X|U}$ such that $U\rightarrow X\rightarrow (Y,Z)$.
+%To prove the converse, we first assume that the wiretap channel is less noisy, \ie $I(U;Y)\geq I(U;Z)$ for all $P_UP_{X|U}$ such that $(U,S)\rightarrow (X,S)\rightarrow (Y,Z)$.
 
 Suppose there exists a code such that $R_e\leq \varepsilon_n$ where $\varepsilon_n\rightarrow 0$ as $n\rightarrow \infty$. Note that by Fano's inequality, $H(M|Y^n)\leq n\varepsilon_n'$ where $\varepsilon_n'\rightarrow 0$ as $n\rightarrow \infty$. We have
 \begin{align}
@@ -165,46 +165,31 @@ nR_s &= H(M)-H(M|Y^n) +H(M|Y^n)\notag\\
 \label{eq.sum_ineq2}
 &= \sum_{i=1}^n \left[I(M;Y_i|Y_1^{i-1},Z_{i+1}^n)-I(M;Z_i|Y_1^{i-1},Z_{i+1}^n)\right]+n(\varepsilon_n'+\varepsilon_n)\\
 \label{eq.first_outcome}
-&= \sum_{i=1}^n \left[I(\tilde{U}_i;Y_i|V_i)-I(\tilde{U}_i;Z_i|V_i)\right]+n(\varepsilon_n'+\varepsilon_n)
+&= \sum_{i=1}^n \left[I(T_i;Y_i|V_i)-I(T_i;Z_i|V_i)\right]+n(\varepsilon_n'+\varepsilon_n)
 \end{align}
-where \eqref{eq.sum_ineq1} and \eqref{eq.sum_ineq2} are due to Csiszar sum identity, and in \eqref{eq.first_outcome} auxiliary random variables $V_i = (Y_1^{i-1},Z_{i+1}^n)$ and $\tilde{U}_i = (M,V_i)$ are introduced such that $(V_i,S)\rightarrow (\tilde{U}_i,S)\rightarrow (X_i,S_i)  \rightarrow (Y_i,Z_i)$ forms a Markov chain. Note that here $V_i$ and $\tilde{U}_i$ are dependent on $S_i$.
+where \eqref{eq.sum_ineq1} and \eqref{eq.sum_ineq2} are due to Csiszar sum identity, and in \eqref{eq.first_outcome} auxiliary random variables $V_i = (Y_1^{i-1},Z_{i+1}^n)$ and $T_i = (M,V_i)$ are introduced such that $(V_i,S)\rightarrow (T_i,S)\rightarrow (X_i,S_i)  \rightarrow (Y_i,Z_i)$ forms a Markov chain. Note that here $V_i$ and $T_i$ are dependent on $S_i$.
 
 %Now, by the less noisy property, we have
 %\begin{align}
 %I(\tilde{U}_i;Y_i|V_i)-I(\tilde{U}_i;Z_i|V_i)
 %\end{align}
 
-By the less noisy property, we have
-\begin{align}\label{eq.to_prove}
-&I(S_1^{i-1};Y_i|\tilde{U}_i)-I(S_1^{i-1};Z_i|\tilde{U}_i)\geq 0.
-\end{align}
 Hence,
 \begin{align}
-\eqref{eq.first_outcome}&\leq \sum_{i=1}^n \left[I(\tilde{U}_i;Y_i|V_i)+I(S_1^{i-1};Y_i|\tilde{U}_i)-I(\tilde{U}_i;Z_i|V_i)-I(S_1^{i-1};Z_i|\tilde{U}_i)\right]\notag\\
-&\quad+n(\varepsilon_n'+\varepsilon_n)\notag\\
-&=\sum_{i=1}^n \left[I(\tilde{U}_i,S_1^{i-1};Y_i|V_i)-I(\tilde{U}_i,S_1^{i-1};Z_i|V_i)\right]+n(\varepsilon_n'+\varepsilon_n)\notag\\
-\label{eq.T_gets_in}
-&= \sum_{i=1}^n \left[I(U_i;Y_i|V_i)-I(U_i;Z_i|V_i)\right]+n(\varepsilon_n'+\varepsilon_n)\\
+\eqref{eq.first_outcome}
 \label{eq.time_sharing}
-&= \left[I(U_Q;Y_Q|V_Q,Q)-I(U_Q;Z_Q|V_Q,Q)\right]+n(\varepsilon_n'+\varepsilon_n)\\
+&= \left[I(T_Q;Y_Q|V_Q,Q)-I(T_Q;Z_Q|V_Q,Q)\right]+n(\varepsilon_n'+\varepsilon_n)\\
 \label{eq.after_time_sharing}
-&= \left[I(U;Y|V)-I(U;Z|V)\right]+n(\varepsilon_n'+\varepsilon_n)\\
-&\leq \max_v \left[I(U;Y|V=v)-I(U;Z|V=v)\right]+n(\varepsilon_n'+\varepsilon_n)\notag\\
+&= \left[I(T;Y|V)-I(T;Z|V)\right]+n(\varepsilon_n'+\varepsilon_n)\\
+&\leq \max_v \left[I(T;Y|V=v)-I(T;Z|V=v)\right]+n(\varepsilon_n'+\varepsilon_n)\notag\\
 \label{eq.C_s}
-&= n\max_{p(u|s)p(x|u,s)}\left[I(U;Y)-I(U;Z)\right]+n(\varepsilon_n'+\varepsilon_n)\notag\\
-&= n\max_{p(u|s)p(t|u),x(t,s)}\left[I(U;Y)-I(U;Z)\right]+n(\varepsilon_n'+\varepsilon_n)
+&= n\max_{p(t|s)p(x|t,s)}\left[I(T;Y)-I(T;Z)\right]+n(\varepsilon_n'+\varepsilon_n)\notag\\
+&= n\max_{p(u)t(u,s),p(x|t,s)}\left[I(T;Y)-I(T;Z)\right]+n(\varepsilon_n'+\varepsilon_n)
 \end{align}
-where \eqref{eq.T_gets_in} follows by letting $U_i=(\tilde{U}_i,S_1^{i-1})$, in \eqref{eq.time_sharing} a time-sharing random variable $Q$ is introduced, \eqref{eq.after_time_sharing} holds by letting $V = (V_Q,Q)$, $U=(U_Q,Q)$, $Y=Y_Q$, and $Z=Z_Q$, and \eqref{eq.C_s} is because of the Markov chain $U\rightarrow (X,S)\rightarrow (Y,Z)$ and the functional representation lemma. Note that the Markov chain turns into $(U,S)\rightarrow (T,S)\rightarrow(Y,Z)$.
-
-Now, by the less noisy property, we have
-\begin{align}
-I(U;Y)-I(U;Z) &= I(U,T;Y)-I(U,T;Z)-(I(T;Y|U)-I(T;Z|U))\notag\\
-&\leq I(T;Y)-I(T;Z)
-\end{align}
-by setting $U=T$.
+where in \eqref{eq.time_sharing} a time-sharing random variable $Q$ is introduced, \eqref{eq.after_time_sharing} holds by letting $V = (V_Q,Q)$, $U=(U_Q,Q)$, $Y=Y_Q$, and $Z=Z_Q$, \eqref{eq.C_s} is because of the Markov chain $(T,S)\rightarrow (X,S)\rightarrow (Y,Z)$ and the functional representation lemma, and $t(\cdot,\cdot)$ is a deterministic function. 
 
 \begin{lemma}[functional representation]
-Let $(Y,S,X)\sim p(y,s,x)$. Then $X$ can be represented as a function of $(S,U)$ for some random variable $U$ of cardinality $|\calU|\leq |\calS|(|\calX|-1)+1$ such that $U$ is independent of $S$ and $U\rightarrow (X,S)\rightarrow Y$ forms a Markov chain.
+Let $(S,T,X)\sim p(s,t,x)$. Then $T$ can be represented as a function of $(S,U)$ for some random variable $U$ of cardinality $|\calU|\leq |\calS|(|\calT|-1)+1$ such that $U$ is independent of $S$ and $U\rightarrow (T,S)\rightarrow X$ forms a Markov chain.
 \end{lemma}
 
 
