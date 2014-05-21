@@ -84,7 +84,8 @@
 \author{Pang-Chang Lan}
 \maketitle
 
-
+\section{Problem Statement and Assumptions}
+Let's consider a discrete memoryless wiretap channel with perfect CSIT but no CSIRE as shown in Fig. \ref{fig.secrecy_noCSIR_channel}. The perfect CSIT is causally available to the transmitter. That is, the encoder knows $S^i$ before transmission $i$ occurs. Let the message set be $\calM=\{1,2,\cdots,2^{nR}\}$. A $(2^{nR},n)$ code is used for this setup. The encoder performs $x_i(m,s^i)$ for $i\in [1:n]$, and the decoder performs $\hat{m}(y^n)$. Note that the function $x_i(\cdot, \cdot)$ is deterministic and fixed before the transmission begins.
 
 \begin{figure}[h]
 \centering
@@ -93,35 +94,36 @@
 \label{fig.secrecy_noCSIR_channel}
 \end{figure}
 
+\section{Main Theorem}
 \begin{theorem}
-Suppose that the main channel is less noisy than the wiretap channel, \ie $I(U;Y)\geq I(U;Z)$ for all $U$ such that $(U,S)\rightarrow (X,S)\rightarrow (Y,Z)$ forms a Markov chain. The secrecy capacity of the discrete memoryless wiretap channel with perfect CSIT but no CSIRE, as shown in Fig. \ref{fig.secrecy_noCSIR_channel}, is given by
+Suppose that the main channel is less noisy than the wiretap channel, \ie $I(U;Y)\geq I(U;Z)$ for all $U$ such that $(U,S)\rightarrow (X,S)\rightarrow (Y,Z)$ forms a Markov chain. The secrecy capacity of the discrete memoryless wiretap channel with perfect CSIT but no CSIRE is given by
 \begin{equation}
-C_s = \max_{p(t),x(t,s)} I(T;Y)-I(T;Z)
+C_s = \max_{p(u)t(u,s),p(x|t,s)} I(T;Y)-I(T;Z)
 \end{equation}
-where $T$ is the auxiliary random variables independent of $S$ and satisfying the Markov relation $T\rightarrow (X,S)\rightarrow (Y,Z)$, the cadinality bound is $|\calT|\leq \min\{(|\calX|-1)|\calS|+1,|\calY|\}$, and $x:\calT\times\calS\rightarrow\calX$ is a deterministic function.
+where U is an auxiliary random variable independent of $S$, $t(\cdot,\cdot)$ is a deterministic function satisfying the Markov relation $U\rightarrow (T,S)\rightarrow (X,S)\rightarrow (Y,Z)$.
 \end{theorem}
 
 \section{Achievability Proof}
 We first prove that the following rate is achievable in general, namely,
 \begin{equation}\label{eq.achievable}
-R_s = \max_{p(u)p(t|u),x(t,s)} I(U;Y)-I(U;Z)
+R_s = \max_{p(v)p(u|v)t(u,s),p(x|t,s)} I(V;Y)-I(V;Z).
 \end{equation}
-where $U$ and $T$ are auxiliary random variables independent of $S$ and satisfying the Markov relation $U\rightarrow T\rightarrow (X,S)\rightarrow (Y,Z)$, the cadinality bound is given by $|\calU|\leq |\calT|$.
+where $V$ is an auxiliary random variable.
 
-Let $\calM=\{1,2,\cdots,2^{nR}\}$. We use multicoding and a three-step randomized encoding scheme.\\
+We use multicoding and a three-step randomized encoding scheme.\\
 
 \noindent {\bf Codebook generation.} For each message $m\in \calM$, generate a subcodebook $\calC(m)$ consisting of $2^{n(\tilde{R}-R)}$ sequences $u^n(l)$ for $l\in [(m-1)2^{n(\tilde{R}-R)}+1:m2^{n(\tilde{R}-R)}]$ which is randomly and independently generated according to the distribution $\prod_{i=1}^n p_U(u_i)$. This codebook is revealed to all the nodes.\\
 
-\noindent {\bf Encoding.} To send message $m\in\calM$, the encoder uniformly randomly chooses an index $L$ from $\calC(m)$. Then it generates $t^n(L)$ by random coding according to the distribution $\prod_{i=1}^n p_{T|U}(t_i|u_i(l))$. The channel input at time $i$ is then given by $x_i=x(t_i(L),s_i)$ where $x(\cdot,\cdot)$ is a deterministic function.\\
+\noindent {\bf Encoding.} To send message $m\in\calM$, the encoder uniformly randomly chooses an index $L$ from $\calC(m)$. Given the function $t(\cdot,\cdot)$, the encoder generates $t^n(L)$ by $t_i=t(u_i(l),s_i)$. It then uses random coding to generate the channel input $x_i$ at time $i$ according to the distribution $p_{X|T,S}(x_i|t_i,s_i)$.\\
 
 \noindent {\bf Decoding.} Given $Y^n=y^n$, find the unique $\hat{m}$ such that $(u^n(l), y^n)\in\calT^n_{\varepsilon}(U,Y)$ for some $u^n(l)\in\calC(\hat{m})$.\\
 
-\noindent {\bf Analysis.} By code translation, we can obtain an equivalent wiretap channel described by
+\noindent {\bf Analysis.} We can obtain an equivalent wiretap channel described by
 \begin{align*}
-p_{Y,Z|T}(y,z|t) &= \sum_{x\in\calX, s\in\calS}P_{Y,Z,X,S|T}(y,z,x,s|t)\\
-&= \sum_{x\in\calX, s\in\calS}P_{Y,Z|X,T,S}(y,z|x,t,s)p_{X|T,S}(x|t,s)p_{S|T}(s|t)\\
-&= \sum_{x\in\calX, s\in\calS}P_{Y,Z|X}(y,z|x)\delta_K(x=x(t,s))p_{S}(s)\\
-&= \sum_{s\in\calS}P_{Y,Z|X}(y,z|x(t,s))p_{S}(s).
+p_{Y,Z|U}(y,z|u) &= \sum_{x\in\calX, s\in\calS, t\in\calT}P_{Y,Z,X,S,T|U}(y,z,x,s,t|u)\\
+&= \sum_{x\in\calX, s\in\calS, t\in\calT}P_{Y,Z|X,T,U,S}(y,z|x,t,u,s)p_{X|T,U,S}(x|t,u,s)p_{T|U,S}(t|u,s)p_S(s)\\
+&= \sum_{x\in\calX, s\in\calS, t\in\calT}P_{Y,Z|X,S}(y,z|x,s)p_{X|T,S}(x|t,s)1_{(t=t(u,s))}p_{S}(s)\\
+&= \sum_{x\in\calX, s\in\calS}P_{Y,Z|X,S}(y,z|x,s)p_{X|T,S}(x|t(u,s),s)p_{S}(s).
 \end{align*}
 The resulting equivalent DMC without CSI is shown in Figure \ref{fig.secrecy_noCSIR_channel_equivalent}.
 \begin{figure}[h]
@@ -142,9 +144,9 @@ By following the proof in the Network Information Theory book, the equivocation 
 
 Now, by the less noisy property, we have
 \begin{align}
-R_s &= \max_{p(u)p(t|u),x(t,s)} I(U;Y)-I(U;Z)\notag\\
-&= \max_{p(u)p(t|u),x(t,s)} I(T,U;Y)-I(T,U;Z)-(I(T;Y|U)-I(T;Z|U))\notag\\
-&= \max_{p(t),x(t,s)} I(T;Y)-I(T;Z)
+R_s &= \max_{p(u)t(u,s),p(x|t,s)} I(U;Y)-I(U;Z)\notag\\
+&= \max_{p(u)t(u,s),p(x|t,s)} I(T,U;Y)-I(T,U;Z)-(I(T;Y|U)-I(T;Z|U))\notag\\
+&= \max_{p(u)t(u,s),p(x|t,s)} I(T;Y)-I(T;Z)
 \end{align}
 where the last equality follows since $I(T;Y|U)-I(T;Z|U)\geq 0$ and by letting $U=T$, it is made $0$. Hence, the achievability follows.
 
@@ -183,12 +185,13 @@ Hence,
 &= \left[I(T_Q;Y_Q|V_Q,Q)-I(T_Q;Z_Q|V_Q,Q)\right]+n(\varepsilon_n'+\varepsilon_n)\\
 \label{eq.after_time_sharing}
 &= \left[I(T;Y|V)-I(T;Z|V)\right]+n(\varepsilon_n'+\varepsilon_n)\\
+&=
 &\leq \max_v \left[I(T;Y|V=v)-I(T;Z|V=v)\right]+n(\varepsilon_n'+\varepsilon_n)\notag\\
 \label{eq.C_s}
 &= n\max_{p(t|s)p(x|t,s)}\left[I(T;Y)-I(T;Z)\right]+n(\varepsilon_n'+\varepsilon_n)\notag\\
 &= n\max_{p(u)t(u,s),p(x|t,s)}\left[I(T;Y)-I(T;Z)\right]+n(\varepsilon_n'+\varepsilon_n)
 \end{align}
-where in \eqref{eq.time_sharing} a time-sharing random variable $Q$ is introduced, \eqref{eq.after_time_sharing} holds by letting $V = (V_Q,Q)$, $U=(U_Q,Q)$, $Y=Y_Q$, and $Z=Z_Q$, \eqref{eq.C_s} is because of the Markov chain $(T,S)\rightarrow (X,S)\rightarrow (Y,Z)$ and the functional representation lemma, and $t(\cdot,\cdot)$ is a deterministic function. 
+where in \eqref{eq.time_sharing} a time-sharing random variable $Q$ is introduced, \eqref{eq.after_time_sharing} holds by letting $V = (V_Q,Q)$, $U=(U_Q,Q)$, $Y=Y_Q$, and $Z=Z_Q$, \eqref{eq.C_s} is because of the Markov chain $(T,S)\rightarrow (X,S)\rightarrow (Y,Z)$ and the functional representation lemma, and $t(\cdot,\cdot)$ is a deterministic function.
 
 \begin{lemma}[functional representation]
 Let $(S,T,X)\sim p(s,t,x)$. Then $T$ can be represented as a function of $(S,U)$ for some random variable $U$ of cardinality $|\calU|\leq |\calS|(|\calT|-1)+1$ such that $U$ is independent of $S$ and $U\rightarrow (T,S)\rightarrow X$ forms a Markov chain.
