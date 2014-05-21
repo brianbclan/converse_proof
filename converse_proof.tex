@@ -84,6 +84,9 @@
 \author{Pang-Chang Lan}
 \maketitle
 
+\section{Problem Statement and Assumptions}
+Let's consider a discrete memoryless wiretap channel with perfect CSIT but no CSIRE as shown in Fig. \ref{fig.secrecy_noCSIR_channel}. The perfect CSIT is causally available to the transmitter. That is, the encoder knows $S^i$ before transmission $i$ occurs. Let the message set be $\calM=\{1,2,\cdots,2^{nR}\}$. A $(2^{nR},n)$ code is used for this setup. The encoder performs $x_i(m,s^i)$ for $i\in [1:n]$, and the decoder performs $\hat{m}(y^n)$. Note that the function $x_i(\cdot, \cdot)$ is deterministic and fixed before the transmission begins.
+
 \begin{figure}[h]
 \centering
 \includegraphics[scale=.6]{figs/secrecy_noCSIR_channel}
@@ -91,10 +94,11 @@
 \label{fig.secrecy_noCSIR_channel}
 \end{figure}
 
+\section{Main Theorem}
 \begin{theorem}
-Suppose that the main channel is less noisy than the wiretap channel, \ie $I(U;Y)\geq I(U;Z)$ for all $U$ such that $(U,S)\rightarrow (X,S)\rightarrow (Y,Z)$ forms a Markov chain. The secrecy capacity of the discrete memoryless wiretap channel with perfect CSIT but no CSIRE, as shown in Fig. \ref{fig.secrecy_noCSIR_channel}, is given by
+Suppose that the main channel is less noisy than the wiretap channel, \ie $I(U;Y)\geq I(U;Z)$ for all $U$ such that $(U,S)\rightarrow (X,S)\rightarrow (Y,Z)$ forms a Markov chain. The secrecy capacity of the discrete memoryless wiretap channel with perfect CSIT but no CSIRE is given by
 \begin{equation}
-C_s = \max_{p(t),x(t,s)} I(T;Y)-I(T;Z)
+C_s = \max_{p(u)t(u,s),p(x|t,s)} I(T;Y)-I(T;Z)
 \end{equation}
 where $T$ is the auxiliary random variables independent of $S$ and satisfying the Markov relation $T\rightarrow (X,S)\rightarrow (Y,Z)$, the cadinality bound is $|\calT|\leq \min\{(|\calX|-1)|\calS|+1,|\calY|\}$, and $x:\calT\times\calS\rightarrow\calX$ is a deterministic function.
 \end{theorem}
@@ -106,7 +110,7 @@ R_s = \max_{p(u)p(t|u),x(t,s)} I(U;Y)-I(U;Z)
 \end{equation}
 where $U$ and $T$ are auxiliary random variables independent of $S$ and satisfying the Markov relation $U\rightarrow T\rightarrow (X,S)\rightarrow (Y,Z)$, the cadinality bound is given by $|\calU|\leq |\calT|$.
 
-Let $\calM=\{1,2,\cdots,2^{nR}\}$. We use multicoding and a three-step randomized encoding scheme.\\
+We use multicoding and a three-step randomized encoding scheme.\\
 
 \noindent {\bf Codebook generation.} For each message $m\in \calM$, generate a subcodebook $\calC(m)$ consisting of $2^{n(\tilde{R}-R)}$ sequences $u^n(l)$ for $l\in [(m-1)2^{n(\tilde{R}-R)}+1:m2^{n(\tilde{R}-R)}]$ which is randomly and independently generated according to the distribution $\prod_{i=1}^n p_U(u_i)$. This codebook is revealed to all the nodes.\\
 

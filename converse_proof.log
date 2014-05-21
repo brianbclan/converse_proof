@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=latex 2013.2.28)  20 MAY 2014 12:16
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=latex 2013.2.28)  20 MAY 2014 20:36
 entering extended mode
 **converse_proof.tex
 
@@ -571,35 +571,35 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 82.
 LaTeX Font Info:    ... okay on input line 82.
 LaTeX Font Info:    Checking defaults for U/mathx/m/n on input line 82.
 LaTeX Font Info:    ... okay on input line 82.
-File: figs/secrecy_noCSIR_channel.eps Graphic file (type eps)
-
-<figs/secrecy_noCSIR_channel.eps>
-LaTeX Font Info:    Try loading font information for U+msa on input line 95.
+LaTeX Font Info:    Try loading font information for U+msa on input line 88.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 95.
+LaTeX Font Info:    Try loading font information for U+msb on input line 88.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
-Underfull \hbox (badness 10000) in paragraph at lines 109--110
+File: figs/secrecy_noCSIR_channel.eps Graphic file (type eps)
 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 111--112
-
- []
-
-
+<figs/secrecy_noCSIR_channel.eps>
 Underfull \hbox (badness 10000) in paragraph at lines 113--114
 
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 115--116
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 117--118
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 119--120
 
  []
 
@@ -611,10 +611,10 @@ er Option\converse proof\converse_proof.aux") )
 Here is how much of TeX's memory you used:
  3299 strings out of 493922
  44987 string characters out of 3147305
- 100138 words of memory out of 3000000
+ 101138 words of memory out of 3000000
  6561 multiletter control sequences out of 15000+200000
  32726 words of font info for 84 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 27i,12n,24p,431b,258s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,12n,24p,644b,258s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on converse_proof.dvi (3 pages, 17836 bytes).
+Output written on converse_proof.dvi (3 pages, 18752 bytes).

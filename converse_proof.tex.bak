@@ -84,6 +84,8 @@
 \author{Pang-Chang Lan}
 \maketitle
 
+
+
 \begin{figure}[h]
 \centering
 \includegraphics[scale=.6]{figs/secrecy_noCSIR_channel}
@@ -136,12 +138,12 @@ P(\calE)\leq P(\calE_1\cup\calE_2) \leq P(\calE_1)+P(\calE_2)
 \end{align*}
 By LLN, $P(\calE_1)\rightarrow 0$ as $n\rightarrow \infty$. By the packing lemma, $P(\calE_2)\rightarrow 0$ as $n\rightarrow \infty$ if $\tilde{R}<I(U;Y)-\delta(\varepsilon)$. Hence, the error probability diminishes as $n$ goes to infinity.
 
-By following the proof in the Network Information Theory book, the equivocation at the eavesdropper can also be shown to approach $0$ as $n\rightarrow \infty$ if $\tilde{R}-R\geq I(U,Z)$. Hence, the achievable rate follows as \eqref{eq.achievable}.
+By following the proof in the Network Information Theory book, the equivocation at the eavesdropper can also be shown to approach $0$ as $n\rightarrow \infty$ if $\tilde{R}-R\geq I(U;Z)$. Hence, the achievable rate follows as \eqref{eq.achievable}.
 
 Now, by the less noisy property, we have
 \begin{align}
 R_s &= \max_{p(u)p(t|u),x(t,s)} I(U;Y)-I(U;Z)\notag\\
-&= \max_{p(u)p(t|u),x(t,s)} I(T;Y)-I(T;Z)-(I(T;Y|U)-I(T;Z|U))\notag\\
+&= \max_{p(u)p(t|u),x(t,s)} I(T,U;Y)-I(T,U;Z)-(I(T;Y|U)-I(T;Z|U))\notag\\
 &= \max_{p(t),x(t,s)} I(T;Y)-I(T;Z)
 \end{align}
 where the last equality follows since $I(T;Y|U)-I(T;Z|U)\geq 0$ and by letting $U=T$, it is made $0$. Hence, the achievability follows.
@@ -167,7 +169,7 @@ nR_s &= H(M)-H(M|Y^n) +H(M|Y^n)\notag\\
 \label{eq.first_outcome}
 &= \sum_{i=1}^n \left[I(T_i;Y_i|V_i)-I(T_i;Z_i|V_i)\right]+n(\varepsilon_n'+\varepsilon_n)
 \end{align}
-where \eqref{eq.sum_ineq1} and \eqref{eq.sum_ineq2} are due to Csiszar sum identity, and in \eqref{eq.first_outcome} auxiliary random variables $V_i = (Y_1^{i-1},Z_{i+1}^n)$ and $T_i = (M,V_i)$ are introduced such that $(V_i,S)\rightarrow (T_i,S)\rightarrow (X_i,S_i)  \rightarrow (Y_i,Z_i)$ forms a Markov chain. Note that here $V_i$ and $T_i$ are dependent on $S_i$.
+where \eqref{eq.sum_ineq1} and \eqref{eq.sum_ineq2} are due to Csiszar sum identity, and in \eqref{eq.first_outcome} auxiliary random variables $V_i = (Y_1^{i-1},Z_{i+1}^n)$ and $T_i = (M,V_i)$ are introduced such that $(V_i,S_i)\rightarrow (T_i,S_i)\rightarrow (X_i,S_i)  \rightarrow (Y_i,Z_i)$ forms a Markov chain. Note that here $V_i$ and $T_i$ are dependent on $S_i$.
 
 %Now, by the less noisy property, we have
 %\begin{align}
